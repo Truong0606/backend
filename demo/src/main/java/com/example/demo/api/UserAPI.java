@@ -8,12 +8,13 @@ import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class UserAPI {
 
     @Autowired
@@ -40,12 +41,16 @@ public class UserAPI {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
+
     @DeleteMapping("{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity delete(@PathVariable long id){
         User user =userService.delete(id);
         return ResponseEntity.ok(user);
     }
+
     @PutMapping("{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity updateUser(@PathVariable long id, @RequestBody UserRequest userRequest){
         User user=userService.update(id, userRequest);
         return ResponseEntity.ok(user);

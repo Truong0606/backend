@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -49,7 +51,7 @@ public class SwaggerConfig {
     public GroupedOpenApi groupedOpenApi() {
         return GroupedOpenApi.builder()
                 .group("api-service")
-                .packagesToScan("com.weiz.trendify.controller")
+                .packagesToScan("com.example.demo.api")
                 .build();
     }
 }
