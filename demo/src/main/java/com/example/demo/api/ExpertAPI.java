@@ -29,6 +29,7 @@ public class ExpertAPI {
         Expert expert = expertService.createExpert(request);
         return ResponseEntity.ok(expert);
     }
+
     @GetMapping("/profile/{id}")
     public ResponseEntity<ExpertResponse> getExpertProfile(@PathVariable Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
