@@ -21,7 +21,7 @@ public class PreMarriageServiceAPI {
     PreMarriageService preMarriageService;
 
     @PostMapping
-//    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity createService(@Valid @RequestBody ServicePackageRequest servicePackageRequest){
         System.out.println("🔵 Nhận request tạo ServicePackage: " + servicePackageRequest);
         ServicePackage servicePackage = preMarriageService.createService(servicePackageRequest);
