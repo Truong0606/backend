@@ -30,7 +30,6 @@ public class ExpertAPI {
         return ResponseEntity.ok(expert);
     }
     @GetMapping("/profile/{id}")
-    @Secured("{ROLE_CUSTOMER, ROLE_EXPERT}")
     public ResponseEntity<ExpertResponse> getExpertProfile(@PathVariable Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
@@ -44,13 +43,11 @@ public class ExpertAPI {
         return ResponseEntity.ok(response); // Trả về thông tin profile của Expert
     }
     @GetMapping("/all")
-    @Secured("{ROLE_CUSTOMER, ROLE_ADMIN}")
     public List<ExpertResponse> getAllExperts() {
         return expertService.getAllExperts(); // Gọi phương thức từ service
     }
 
     @PutMapping("/expert/{id}")
-    @Secured("ROLE_EXPERT")
     public ExpertResponse updateExpert(@PathVariable Long id, @RequestBody ExpertRequest request) {
         Expert updatedExpert = expertService.updateExpertbyID(id, request);
 
@@ -69,7 +66,6 @@ public class ExpertAPI {
     }
 
     @PutMapping("/expert/update")
-    @Secured("ROLE_EXPERT")
     public ExpertResponse updateLoggedInExpert(@RequestBody ExpertRequest request) {
         Expert updatedExpert = expertService.updateExpert(request);
 

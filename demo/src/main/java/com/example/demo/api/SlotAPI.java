@@ -27,7 +27,7 @@ public class SlotAPI {
     }
 
     @GetMapping
-    @Secured("{ROLE_ADMIN, ROLE_CUSTOMER}")
+    @Secured({"ROLE_CUSTOMER", "ROLE_ADMIN"})
     public ResponseEntity getSlot(){
         List<Slot> slots = slotService.getSlot();
         return ResponseEntity.ok(slots);

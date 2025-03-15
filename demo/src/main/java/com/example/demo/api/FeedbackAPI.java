@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/feedback")
-@SecurityRequirement(name = "api")
 public class FeedbackAPI {
     @Autowired
     FeedbackService feedbackService;
@@ -28,14 +27,14 @@ public class FeedbackAPI {
     }
 
     @GetMapping
-    @Secured("{ROLE_CUSTOMER, ROLE_EXPERT}")
+    @Secured({"ROLE_CUSTOMER", "ROLE_EXPERT"})
     public ResponseEntity getFeedback() {
         List<Feedback> feedbacks = feedbackService.getAllFeedback();
         return ResponseEntity.ok(feedbacks);
     }
 
     @GetMapping("{id}")
-    @Secured("{ROLE_CUSTOMER, ROLE_EXPERT}")
+    @Secured({"ROLE_CUSTOMER", "ROLE_EXPERT"})
     public  ResponseEntity getFeedbackById(@PathVariable long id){
         Feedback feedback = feedbackService.getFeedbackById(id);
        return ResponseEntity.ok(feedback);

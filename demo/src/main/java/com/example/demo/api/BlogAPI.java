@@ -39,14 +39,14 @@ public class BlogAPI {
     }
 
     @GetMapping
-    @Secured("{ROLE_CUSTOMER, ROLE_ADMIN}")
+    @Secured({"ROLE_CUSTOMER", "ROLE_ADMIN"})
     @Operation(summary = "Lấy danh sách blog", description = "Lấy tất cả blog chưa bị xóa")
     public ResponseEntity<List<BlogResponse>> getAllBlogs() {
         return ResponseEntity.ok(blogService.getAllBlogs());
     }
 
     @GetMapping("/{id}")
-    @Secured("{ROLE_CUSTOMER, ROLE_ADMIN}")
+    @Secured({"ROLE_CUSTOMER", "ROLE_ADMIN"})
     @Operation(summary = "Lấy chi tiết blog", description = "Lấy thông tin blog theo ID")
     public ResponseEntity<BlogResponse> getBlogById(@PathVariable Long id) {
         return ResponseEntity.ok(blogService.getBlogById(id));

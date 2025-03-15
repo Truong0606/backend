@@ -30,7 +30,7 @@ public class PreMarriageServiceAPI {
     }
 
     @GetMapping
-    @Secured("{ROLE_ADMIN, ROLE_CUSTOMER}")
+    @Secured({"ROLE_ADMIN", "ROLE_CUSTOMER"})
     public ResponseEntity getService(){
         List<ServicePackage> servicePackages = preMarriageService.getAllService();
         return ResponseEntity.ok(servicePackages);
